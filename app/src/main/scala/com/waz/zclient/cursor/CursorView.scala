@@ -245,8 +245,7 @@ class CursorView(val context: Context, val attrs: AttributeSet, val defStyleAttr
   def setCallback(callback: CursorCallback) = controller.cursorCallback = Option(callback)
 
   def setText(text: String): Unit = {
-    if (text.nonEmpty) cursorEditText.setText(text)
-    else cursorEditText.getText.clear()
+    cursorEditText.setText(text)
     cursorEditText.setSelection(text.length)
   }
 
