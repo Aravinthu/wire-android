@@ -89,7 +89,7 @@ object Intents {
 
     def page             = Option(intent).map(_.getStringExtra(OpenPageExtra)).filter(_ != null)
 
-    def uri              = Option(intent).map(isTeamAccountCreatedIntent).filter(_ != null)
+    def uri              = isTeamAccountCreatedIntent(Option(intent))
 
     def clearExtras() = Option(intent).foreach { i =>
       i.removeExtra(FromNotificationExtra)

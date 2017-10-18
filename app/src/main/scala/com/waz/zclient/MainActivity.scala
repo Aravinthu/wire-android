@@ -245,7 +245,7 @@ class MainActivity extends BaseActivity
     super.onNewIntent(intent)
     verbose(s"onNewIntent: $intent")
 
-    if (IntentUtils.isPasswordResetIntent(intent)) onPasswordWasReset()
+    if (IntentUtils.isPasswordResetIntent(Option(intent))) onPasswordWasReset()
 
     setIntent(intent)
     handleIntent(intent)
@@ -275,7 +275,7 @@ class MainActivity extends BaseActivity
   private def enterApplication(self: Self): Unit = {
     error("Entering application")
     // step 1 - check if app was started via password reset intent
-    if (IntentUtils.isPasswordResetIntent(getIntent)) {
+    if (IntentUtils.isPasswordResetIntent(Option(getIntent))) {
       error("Password was reset")
       onPasswordWasReset()
       return
