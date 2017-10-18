@@ -275,10 +275,9 @@ class MainActivity extends BaseActivity
   private def enterApplication(self: Self): Unit = {
     error("Entering application")
     // step 1 - check if app was started via password reset intent
-    if (IntentUtils.isPasswordResetIntent(Option(getIntent))) {
+    if (IntentUtils.isPasswordResetIntent(getIntent.toOpt)) {
       error("Password was reset")
       onPasswordWasReset()
-      return
     }
   }
 

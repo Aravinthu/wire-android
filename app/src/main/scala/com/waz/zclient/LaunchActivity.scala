@@ -20,6 +20,7 @@ package com.waz.zclient
 import android.content.Intent
 import com.waz.api.ClientRegistrationState.PASSWORD_MISSING
 import com.waz.api.{InitListener, Self}
+import com.waz.zclient.Intents._
 import com.waz.zclient.utils.{BackendPicker, Callback, IntentUtils}
 
 class LaunchActivity extends BaseActivity with InitListener {
@@ -44,12 +45,13 @@ class LaunchActivity extends BaseActivity with InitListener {
     persistInviteToken()
   }
 
-  private def persistInviteToken(): Unit =
-    IntentUtils.getInviteToken(Option(getIntent)).foreach { token =>
-        getControllerFactory
-          .getUserPreferencesController
-          .setGenericInvitationToken(token)
+  private def persistInviteToken(): Unit = {
+    IntentUtils.getInviteToken(getIntent.getOpt).foreach { token =>
+      getControllerFactory
+        .getUserPreferencesController
+        .setGenericInvitationToken(token)
     }
+  }
 
   // Callbacks //////////////////////////////////////////////////
 

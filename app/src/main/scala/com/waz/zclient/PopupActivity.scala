@@ -50,7 +50,7 @@ class PopupActivity extends BaseActivity with ActivityHelper { self =>
       })
     }
 
-    Option(getIntent) match {
+    getIntent.toOpt match {
       case Some(i) => showQuickReplyFragment(i)
       case None    => finish()
     }

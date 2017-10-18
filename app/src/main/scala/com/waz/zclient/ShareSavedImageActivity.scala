@@ -29,8 +29,7 @@ class ShareSavedImageActivity extends BaseActivity {
       super.onCreate(savedInstanceState)
 
     val intent = getIntent
-    if(intent == null ||
-       !IntentUtils.isLaunchFromSaveImageNotificationIntent(Some(intent))) {
+    if(intent == null || !IntentUtils.isLaunchFromSaveImageNotificationIntent(Some(intent))) {
       finish()
     } else {
       val uri = intent.getParcelableExtra(Intent.EXTRA_STREAM)

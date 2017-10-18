@@ -20,6 +20,7 @@ package com.waz.zclient
 import android.content.Intent
 import android.os.Bundle
 import com.waz.zclient.utils.IntentUtils
+import com.waz.zclient.Intents._
 
 class SMSCodeReceiverActivity extends BaseActivity {
 
@@ -38,10 +39,9 @@ class SMSCodeReceiverActivity extends BaseActivity {
 
   override def onNewIntent(intent: Intent) = {
     super.onNewIntent(intent)
-    val intentOpt = Option(intent)
-    if(IntentUtils.isSmsIntent(intentOpt)) {
+    if(IntentUtils.isSmsIntent(intent.toOpt)) {
       setIntent(intent)
-      forwardSmsCode(intentOpt)
+      forwardSmsCode(intent.toOpt)
     }
   }
 
